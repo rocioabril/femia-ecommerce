@@ -1,8 +1,12 @@
+import Navbar from "./components/Navbar"
+import ItemListContainer from "./components/ItemListContainer"
+
 function App() {
   return (
-    <div className="app">
-      Hello World!
-    </div>
+    <>
+      <Navbar />
+      <ItemListContainer greeting = {"Bienvenido a la tienda online de Femia, cosmética natural, para el cuidado de tu piel."} />
+    </>
   )
 }
 
