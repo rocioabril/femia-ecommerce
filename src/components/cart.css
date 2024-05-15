@@ -1,0 +1,12 @@
+.cart_item_img {
+    scale: 40%;
+    width: 350px;
+    object-fit: none;
+    border-radius: 8px;
+    
+}
+
+.cart_item_container {
+    background: #edededa6;
+    max-height: 300px;
+}

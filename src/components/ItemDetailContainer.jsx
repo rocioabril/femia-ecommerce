@@ -1,24 +1,18 @@
-import { useEffect, useState } from "react";
-import getData from "../data/getData";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
 import Loader from "./Loader";
+import { useProducts } from "../context/ProductsContext"
+import { useLang } from "../context/LangContext"; 
+
+
 
 //Filtar por ID qué producto mostrar y se lo pasa a ItemDetail por props
 function ItemDetailContainer() {
   const { idProduct } = useParams();
-  const [product, setProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { products, isLoading } = useProducts();
+  const { language } = useLang();
 
-  useEffect(() => {
-    getData
-      .then((response) => {
-        const p = response.find(({ id }) => id === idProduct);
-        setProduct(p);
-        setIsLoading(false);
-      })
-      .catch((error) => console.error(error));
-  }, [idProduct]);
+  const product = products.find(product => product.id === idProduct);
 
   if (isLoading) return <Loader />;
 
