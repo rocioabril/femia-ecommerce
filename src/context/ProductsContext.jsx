@@ -32,6 +32,7 @@ export function ProductsProvider({ children }) {
     fetchProducts();
   }, []);
 
+  console.log(products)
   return (
     <ProductsContext.Provider value={{ products, isLoading }}>
       {children}

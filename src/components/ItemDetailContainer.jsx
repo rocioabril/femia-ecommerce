@@ -16,7 +16,7 @@ function ItemDetailContainer() {
 
   if (isLoading) return <Loader />;
 
-  if (!product) return <h2  className="flex flex-1 items-center">Producto no encontrado</h2>;
+  if (!product) return <h2  className="flex flex-1 items-center">{language["producto_no_encontrado"]}</h2>;
 
   return <ItemDetail product={product} />;
 }

@@ -1,4 +1,5 @@
 const QuantitySelector = ({ quantity, onIncrement, onDecrement }) => {
+
   return (
     <div className="flex justify-center text-lg w-fit mt-4 gap-8 p-2">
       <button className="text-2xl text-orange-600" onClick={onDecrement}>

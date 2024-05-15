@@ -31,7 +31,7 @@ function ItemDetail({ product }) {
           <p className="text-gray-400 py-3 text-base">{language[`${product.name}-description`]}</p>
         </div>
         {quantity === 0 ? (
-          <ItemCount initial={1} stock={5} onAdd={onAdd} />
+          <ItemCount initial={1} stock={product.stock} onAdd={onAdd} />
         ) : (
           <>
             <div>{language["añadiste"]} {quantity} {language["items"]}.</div>

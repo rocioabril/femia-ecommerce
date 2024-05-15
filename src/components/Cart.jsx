@@ -10,6 +10,7 @@ function Cart() {
   console.log(cart);
   const { language } = useLang();
 
+
   return (
     <div>
       <ul className=" flex flex-col gap-4 p-4">
@@ -27,6 +28,8 @@ function Cart() {
             <div className="flex items-start gap-8">
               <div>
                 <p className="font-bold">{language[product.name]}</p>
+                <p className="font-bold">{product.stock}</p>
+
                 <p className="text-gray-400 max-w-md">
                   {language[`${product.name}-description`].substring(0, 150)}{" "}
                   (...)
@@ -34,10 +37,10 @@ function Cart() {
                 <QuantitySelector
                   quantity={product.quantity}
                   onIncrement={() =>
-                    updateProductQuantity(product.id, product.quantity + 1)
+                    updateProductQuantity(product.id, product.quantity < product.stock ? product.quantity + 1 : product.quantity)
                   }
                   onDecrement={() =>
-                    updateProductQuantity(product.id, product.quantity - 1)
+                    updateProductQuantity(product.id, product.quantity === 1 ? product.quantity : product.quantity - 1 )
                   }
                 />
               </div>
