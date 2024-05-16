@@ -31,7 +31,12 @@ export const defaultLang = {
     "añadiste": "Añadiste",
     "items": "items",
     "producto_no_encontrado": "Producto no encontrado",
-
+    "comprar": "Comprar",
+    "precio_anterior": "Precio anterior",
+    "off":"OFF",
+    "empty_cart_msg": "Ohh... ¡Tu carrito está vacio!",
+    "empty_cart_msg_2": "Pero no por mucho tiempo...",
+    "comienza_a_comprar":"Comienza a comprar"
 
   },
   en: {
@@ -74,7 +79,12 @@ export const defaultLang = {
     "añadiste": "You added",
     "items": "items",
     "producto_no_encontrado": "Product not found",
-
+    "comprar": "Buy",
+    "off":"OFF",
+    "precio_anterior": "Previous price",
+    "empty_cart_msg": "Ohh... Your cart is empty!",
+    "empty_cart_msg_2": "But not for long...",
+    "comienza_a_comprar":"Start shopping"
   },
 };
 
