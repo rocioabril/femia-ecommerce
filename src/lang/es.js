@@ -1,4 +1,5 @@
 const es = {
+
     "leche-de-limpieza": "Leche de Limpieza",
     "gel-de-limpieza": "Gel de Limpieza",
     "aceite-jazmin": "Aceite Esencial de Jazmín",
@@ -19,11 +20,29 @@ const es = {
     "aceite-corporal-description": "Nuestro aceite corporal es una mezcla de aceites esenciales nutritivos que hidratan profundamente, dejando la piel suave, lisa y visiblemente más saludable. Ideal para después del baño o la ducha, este aceite no solo nutre la piel sino que también la protege de las agresiones externas, manteniendo su humedad natural. Su fórmula rica en vitaminas y antioxidantes fortalece la barrera cutánea y proporciona una sensación de bienestar duradero.",
     "emulsion-manos-description": "Enriquecida con ingredientes hidratantes, esta emulsión para manos combate la sequedad y deja las manos suaves y nutridas. Su fórmula no grasa se absorbe rápidamente, proporcionando confort inmediato y prolongado. Además, contiene extractos de plantas que protegen la piel de las agresiones externas y previenen el envejecimiento prematuro. Ideal para uso frecuente, especialmente en ambientes secos o durante los meses de invierno.",
     //categorys
-    "aceites-esenciales": "Aceites Esenciales",
-    "cuerpo":"Cuerpo",
-    "rostro":"Rostro",
+    "aceites-esenciales": "ACEITES ESENCIALES",
+    "cuerpo":"CUERPO",
+    "rostro":"ROSTRO",
 
-    "añadir_al_carrito": "Agregar al Carrito"
+    "añadir_al_carrito": "Añadir al Carrito",
+    "ir_al_carrito": "Ir al Carrito",
+    "añadiste": "Añadiste",
+    "items": "items",
+    "producto_no_encontrado": "Producto no encontrado",
+    "tramitar_compra": "Tramitar compra",
+    "precio_anterior": "Precio anterior",
+    "off":"OFF",
+    "empty_cart_msg": "Ohh... ¡Tu carrito está vacio!",
+    "empty_cart_msg_2": "Pero no por mucho tiempo...",
+    "comienza_a_comprar":"Comienza a comprar",
+    "volver_tienda": "Vuelve a la tienda",
+    "name": "NOMBRE",
+    "phone": "TELEFONO",
+    "email": "EMAIL",
+    "enviar": "ENVIAR",
+    "referencia_pago": "REFERENCIA DE PAGO",
+    "campo_obligatorio": "Campo obligatorio",
+    "invalid_email": "El formato del correo no es valido, asegurate de incluir el @"
 }
 
 export default es;

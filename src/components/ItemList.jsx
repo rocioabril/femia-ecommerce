@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLang } from "../context/LangContext";
+import { useProducts } from "../context/ProductsContext";
 import PriceWithOffer from "./PriceWithOffer";
 
 const ItemList = ({ products }) => {
@@ -7,15 +8,16 @@ const ItemList = ({ products }) => {
 
   //irder on sale first
   const compareProducts = (a, b) => {
-    if (a.onSale && !b.onSale) return -1;
-    if (!a.onSale && b.onSale) return 1;
+    if (a.discount && !b.discount) return -1;
+    if (!a.discount && b.discount) return 1;
     return 0;
   };
-  products.sort(compareProducts);
+
+  const sortedProducts = products.toSorted(compareProducts);
 
   return (
     <>
-      {products.map(({ id, name, price, onSale }) => (
+      {sortedProducts.map(({ id, name, price, discount }) => (
         <Link
           key={id}
           to={`/detail/${id}`}
@@ -24,17 +26,18 @@ const ItemList = ({ products }) => {
           <img
             src={`../../public/img/${name}.jpeg`}
             alt={language[name]}
-            className="rounded"
+            className="rounded h-fit"
           />
           <h3 className="font-semibold">{language[name]}</h3>
-          {onSale ? (
+          {discount ? (
             <div className="flex flex-col items-center gap-1">
-              <PriceWithOffer price={price} />
+              <PriceWithOffer price={price} discount={discount} />
             </div>
           ) : (
             <>
               <p className="font-semibold">${price.toFixed(2)}</p>
               <div className="invisible bg-red-700 p-1 text-white">30%</div>
+              {/* TODO: remove this above */}
             </>
           )}
         </Link>

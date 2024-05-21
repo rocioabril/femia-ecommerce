@@ -16,11 +16,26 @@ export function ProductsProvider({ children }) {
     const fetchProducts = async () => {
       try {
         const productsCollection = collection(db, "products");
-        const snapshot = await getDocs(productsCollection);
-        const allProducts = snapshot.docs.map(doc => ({
+        const offersCollection = collection(db, "offers");
+
+        const [productsSnapshot, offersSnapshot] = await Promise.all([
+          getDocs(productsCollection),
+          getDocs(offersCollection),
+        ]);
+
+        const allOffers = offersSnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
+        const allProducts = productsSnapshot.docs.map((doc) => {
+          const offer = getProductOffer(allOffers, doc.id);
+          return {
+            id: doc.id,
+            ...doc.data(),
+            ...(offer && { discount: offer.discount }),
+          };
+        });
+
         setProducts(allProducts);
         setIsLoading(false);
       } catch (error) {
@@ -32,7 +47,11 @@ export function ProductsProvider({ children }) {
     fetchProducts();
   }, []);
 
-  console.log(products)
+  const getProductOffer = (allOffers, id) =>
+    allOffers.find(({ product_ids }) =>
+      product_ids.some((product_id) => product_id === id)
+    );
+
   return (
     <ProductsContext.Provider value={{ products, isLoading }}>
       {children}

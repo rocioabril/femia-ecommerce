@@ -6,6 +6,8 @@ import Cart from "./components/Cart";
 import { LangProvider } from "./context/LangContext";
 import { CartProvider } from "./context/CartContext";
 import { ProductsProvider } from "./context/ProductsContext";
+import Checkout from "./components/Checkout";
+import Order from "./components/Order";
 
 
 function App() {
@@ -28,6 +30,9 @@ function App() {
               element={<ItemDetailContainer />}
             />
             <Route exact path="/cart" element={<Cart />} />
+            <Route exact path="/checkout" element={<Checkout />} />
+            <Route exact path="/order/:orderId" element={<Order />} />
+
             <Route exact path="*" element={<h1>404 NOT FOUND</h1>} />
           </Routes>
         </Layout>

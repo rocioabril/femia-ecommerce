@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 
 const CartContext = createContext();
 
@@ -8,6 +8,14 @@ export function useCart() {
 
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPriceWithOffers, setTotalPriceWithOffer] = useState(0);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+
+  useEffect(() => {
+    calculateTotalPrice();
+    calculateTotalPriceWithOffers();
+  }, [cart]);
 
   const addProduct = (product) => {
     const foundProduct = cart.find((prod) => prod.id === product.id);
@@ -42,10 +50,35 @@ export function CartProvider({ children }) {
     setCart(newCart);
   };
 
+  const calculateTotalPrice = () => {
+    const newTotalPrice = cart.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0
+    );
+    setTotalPrice(newTotalPrice);
+  };
+
+  const calculateTotalPriceWithOffers = () => {
+    const newTotalPrice = cart.reduce(
+      (total, product) =>
+        total +
+        (product.discount
+          ? (product.price * (100 - product.discount)) / 100
+          : product.price) *
+          product.quantity,
+      0
+    );
+    setTotalPriceWithOffer(newTotalPrice);
+  };
+
   return (
     <CartContext.Provider
       value={{
         cart,
+        totalPrice,
+        totalPriceWithOffers,
+        selectedProducts,
+        setSelectedProducts,
         addProduct,
         removeProduct,
         clearCart,

@@ -18,7 +18,7 @@ function Navbar() {
     <nav className="w-full flex justify-between items-center shadow-md shadow-gray-200">
 
       <Link to="/" className="p-2">
-        <img src={logo} alt="company logo" className="w-20" />
+        <img src={logo} alt="company logo" className="w-20 h-fit" />
       </Link>
       <ul className="flex justify-center items-center">
         {categories.map((category) => (

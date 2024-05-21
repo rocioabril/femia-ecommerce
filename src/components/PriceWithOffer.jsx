@@ -1,6 +1,6 @@
 import { useLang } from "../context/LangContext";
 
-const PriceWithOffer = ({ price }) => {
+const PriceWithOffer = ({ price, discount }) => {
   const { language } = useLang();
 
   return (
@@ -10,8 +10,10 @@ const PriceWithOffer = ({ price }) => {
         <span className="line-through">${price.toFixed(2)}</span>
       </div>
       <div className="text-red-700 font-bold flex items-center gap-1">
-        <p className="bg-red-700 py-1 px-2 text-white">30% {language["off"]}</p>
-        <p>${(price * 0.7).toFixed(2)}</p>
+        <p className="bg-red-700 py-1 px-2 text-white whitespace-nowrap">
+          {discount}% {language["off"]}
+        </p>
+        <p>${((price * (100 - discount)) / 100).toFixed(2)}</p>
       </div>
     </>
   );
