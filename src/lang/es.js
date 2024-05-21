@@ -40,9 +40,10 @@ const es = {
     "phone": "TELEFONO",
     "email": "EMAIL",
     "enviar": "ENVIAR",
-    "referencia_pago": "REFERENCIA DE PAGO",
     "campo_obligatorio": "Campo obligatorio",
-    "invalid_email": "El formato del correo no es valido, asegurate de incluir el @"
+    "invalid_email": "El formato del correo no es valido, asegurate de incluir el @",
+    "gracias_compra":"¡Gracias por tu compra!",
+    "referencia_orden": "Tu referencia de orden es:"
 }
 
 export default es;

@@ -11,9 +11,9 @@ function Order() {
   return (
     <div className="flex-1 flex flex-col items-center justify-center gap-1">
       <img src={icon} alt="" width={200} />
-      <h3 className="font-bold">¡Gracias por tu compra!</h3>
+      <h3 className="font-bold">{language["gracias_compra"]}</h3>
       <p className="flex items-center justify-center gap-1">
-        <div>tu referencia de orden es: </div>
+        <div>{language["referencia_orden"]}</div>
         <div className="bg-amber-300 italic">{orderId}</div>
       </p>
       <button

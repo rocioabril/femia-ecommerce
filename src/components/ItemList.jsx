@@ -26,7 +26,7 @@ const ItemList = ({ products }) => {
           <img
             src={`../../public/img/${name}.jpeg`}
             alt={language[name]}
-            className="rounded h-fit"
+            className="rounded h-fit w-28 md:w-64"
           />
           <h3 className="font-semibold">{language[name]}</h3>
           {discount ? (

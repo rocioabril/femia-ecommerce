@@ -15,7 +15,7 @@ function ItemListContainer() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="flex-1 flex justify-center items-center w-4/5 flex-wrap gap-12 p-12">
+    <div className="flex-1 flex justify-center items-center w-4/5 flex-wrap py-8 px-4 gap-4 md:gap-12 md:p-12">
       <ItemList products={filteredProducts} />
     </div>
   );
