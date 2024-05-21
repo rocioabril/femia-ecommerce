@@ -1,8 +1,39 @@
-# React + Vite
+# Proyecto de React con Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación de React configurada con Vite para el curso de React.js de CoderHouse, de una tienda online de productos de cosmetica.
+Aquí encontrarás las instrucciones para clonar, instalar y ejecutar el proyecto.
 
-Currently, two official plugins are available:
+## Clonar el proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para clonar el repositorio, abre tu terminal y ejecuta el siguiente comando:
+
+```sh
+git clone https://github.com/rocioabril/proyecto-react-ecommerce/
+```
+
+# Instalar dependencias
+
+Una vez clonado el repositorio, navega al directorio del proyecto e instala las dependencias necesarias con el siguiente comando:
+
+```sh
+cd proyecto-react-ecommerce
+npm install
+```
+
+# Ejecutar el proyecto
+
+Para ejecutar el proyecto en modo de desarrollo, usa el siguiente comando:
+
+```sh
+npm run dev
+```
+
+Esto iniciará el servidor de desarrollo y podrás ver la aplicación en tu navegador en la dirección http://localhost:5173.
+
+# Scripts Disponibles
+
+En este proyecto puedes utilizar los siguientes scripts de npm:
+
+`npm run dev`: Inicia el servidor de desarrollo.
+`npm run build`: Construye la aplicación para producción.
+`npm run serve`: Sirve la aplicación construida para producción.
