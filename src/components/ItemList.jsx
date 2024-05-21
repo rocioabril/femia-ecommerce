@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useLang } from "../context/LangContext";
-import { useProducts } from "../context/ProductsContext";
+import { useLang } from "../contexts/LangContext";
+import { useProducts } from "../contexts/ProductsContext";
 import PriceWithOffer from "./PriceWithOffer";
 
 const ItemList = ({ products }) => {
@@ -24,7 +24,7 @@ const ItemList = ({ products }) => {
           className="max-w-xs flex flex-col items-center"
         >
           <img
-            src={`../../public/img/${name}.jpeg`}
+            src={`/img/${name}.jpeg`}
             alt={language[name]}
             className="rounded h-fit w-28 md:w-64"
           />

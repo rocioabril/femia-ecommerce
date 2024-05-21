@@ -1,6 +1,6 @@
 import emptyCart from "../assets/empty-cart.png";
 import { useNavigate } from "react-router-dom";
-import { useLang } from "../context/LangContext";
+import { useLang } from "../contexts/LangContext";
 
 
 function EmptyCart() {

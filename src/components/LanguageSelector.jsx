@@ -1,5 +1,5 @@
 import { MdLanguage } from "react-icons/md";
-import { useLang } from "../context/LangContext";
+import { useLang } from "../contexts/LangContext";
 
 function LanguageSelector() {
   const { setLanguage } = useLang();

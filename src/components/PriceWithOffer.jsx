@@ -1,4 +1,4 @@
-import { useLang } from "../context/LangContext";
+import { useLang } from "../contexts/LangContext";
 
 const PriceWithOffer = ({ price, discount }) => {
   const { language } = useLang();

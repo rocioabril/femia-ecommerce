@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
-import { useLang } from "../context/LangContext";
-import { useCart } from "../context/CartContext";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { useLang } from "../contexts/LangContext";
+import { useCart } from "../contexts/CartContext";
+import { collection, doc, getDoc, addDoc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import imgProducts from "../assets/productos-2.jpg";
+import { db } from "../firebase-config";
+import { useProducts } from "../contexts/ProductsContext";
 
-const Checkout = () => {
+const CheckoutPage = () => {
   const { language } = useLang();
-  const { selectedProducts, totalPriceWithOffers } = useCart();
+  const { cart, totalPriceWithOffers, clearCart } = useCart();
+  const { fetchProducts } = useProducts();
   const navigate = useNavigate();
 
   const [userData, setFormData] = useState({
@@ -40,18 +43,33 @@ const Checkout = () => {
         phone: userData.phone,
         email: userData.email,
       },
-      items: selectedProducts.map((item) => ({
-        id: item.id,
-        quantity: item.quantity,
-        price: item.price,
-      })),
+      items: cart
+        .filter(({ checked }) => checked)
+        .map((item) => ({
+          id: item.id,
+          quantity: item.quantity,
+          price: item.discount
+            ? ((item.price * (100 - item.discount)) / 100) * item.quantity
+            : (item.price) * item.quantity
+        })),
       date: new Date().toISOString(),
       total: totalPriceWithOffers,
     };
-    const db = getFirestore();
+
+    // add order
     const ordersCollection = collection(db, "orders");
     addDoc(ordersCollection, order).then(({ id }) => navigate(`/order/${id}`));
     console.log("Form Data order:", order);
+
+    // decrease stocks
+    order.items.forEach(async ({ id, quantity }) => {
+      const docRef = doc(db, "products", id);
+      const docSnap = await getDoc(docRef);
+      await updateDoc(docRef, { stock: docSnap.data().stock - quantity });
+    });
+
+    fetchProducts();
+    clearCart();
   };
 
   const validate = () => {
@@ -86,7 +104,11 @@ const Checkout = () => {
 
   return (
     <div className="flex flex-1 items-center justify-center">
-      <img src={imgProducts} alt="imagen promocional de productos" className="w-6/12"/>
+      <img
+        src={imgProducts}
+        alt="imagen promocional de productos"
+        className="w-6/12"
+      />
 
       <form
         className="flex flex-col flex-1 items-center justify-center p-8 gap-8"
@@ -95,9 +117,7 @@ const Checkout = () => {
         <div className="flex flex-col justify-center gap-8 w-full max-w-md">
           {formFields.map((field) => (
             <div key={field.name} className="flex flex-col gap-1">
-              <label htmlFor={field.name}>
-                {language[field.name]}
-              </label>
+              <label htmlFor={field.name}>{language[field.name]}</label>
               <input
                 type={field.type}
                 id={field.name}
@@ -118,7 +138,7 @@ const Checkout = () => {
         </div>
         <button
           type="submit"
-          className="bg-amber-200 p-4 rounded-2xl font-semibold hover:bg-amber-300 ease-in-out self-end"
+          className="bg-amber-200 p-4 px-10 rounded-2xl font-semibold hover:bg-amber-300 ease-in-out"
         >
           {language["enviar"]}
         </button>
@@ -127,4 +147,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default CheckoutPage;

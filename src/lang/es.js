@@ -43,7 +43,9 @@ const es = {
     "campo_obligatorio": "Campo obligatorio",
     "invalid_email": "El formato del correo no es valido, asegurate de incluir el @",
     "gracias_compra":"¡Gracias por tu compra!",
-    "referencia_orden": "Tu referencia de orden es:"
+    "referencia_orden": "Tu referencia de orden es:",
+    "order_error_title": "¡Ha ocurrido un error!",
+    "order_error_subtitle": "La orden solicitada no existe..."
 }
 
 export default es;

@@ -1,44 +1,23 @@
-import "./cart.css";
-import { useState, useEffect } from "react";
-import { useCart } from "../context/CartContext";
-import { useLang } from "../context/LangContext";
+import { useCart } from "../contexts/CartContext";
+import { useLang } from "../contexts/LangContext";
 import { BsTrash3, BsArrowDown } from "react-icons/bs";
-import QuantitySelector from "./QuantitySelector";
-import PriceWithOffer from "./PriceWithOffer";
-import EmptyCart from "./EmptyCart";
+import QuantitySelector from "../components/QuantitySelector";
+import PriceWithOffer from "../components/PriceWithOffer";
+import EmptyCart from "../components/EmptyCart";
 import { Link, useNavigate } from "react-router-dom";
 
-function Cart() {
+function CartPage() {
   const {
     cart,
     totalPrice,
     totalPriceWithOffers,
     updateProductQuantity,
+    updateProductChecked,
     removeProduct,
-    setSelectedProducts,
   } = useCart();
 
   const { language } = useLang();
   const navigate = useNavigate();
-
-  const [checkedItems, setCheckedItems] = useState(
-    cart.reduce((acc, product) => {
-      acc[product.id] = true;
-      return acc;
-    }, {})
-  );
-
-  useEffect(() => {
-    const selectedProducts = cart.filter((product) => checkedItems[product.id]);
-    setSelectedProducts(selectedProducts);
-  }, [checkedItems, cart, setSelectedProducts]);
-
-  const handleCheckboxChange = (productId) => {
-    setCheckedItems((prev) => ({
-      ...prev,
-      [productId]: !prev[productId],
-    }));
-  };
 
   if (cart.length === 0) {
     return <EmptyCart />;
@@ -54,8 +33,8 @@ function Cart() {
           >
             <input
               type="checkbox"
-              checked={checkedItems[product.id]}
-              onChange={() => handleCheckboxChange(product.id)}
+              checked={product.checked}
+              onChange={() => updateProductChecked(product.id)}
             />
             <Link
               key={product.id}
@@ -63,7 +42,7 @@ function Cart() {
               className="max-w-xs flex flex-col items-center"
             >
               <img
-                src={`../../public/img/${product.name}.jpeg`}
+                src={`/img/${product.name}.jpeg`}
                 alt={product.name}
                 className="cart_item_img h-fit"
               />
@@ -147,4 +126,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default CartPage;

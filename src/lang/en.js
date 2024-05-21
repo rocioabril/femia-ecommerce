@@ -52,7 +52,9 @@ const en = {
   campo_obligatorio: "Required field",
   invalid_email: "The email format is not valid, be sure to include the @",
   "gracias_compra":"Thanks for your purchase!",
-  "referencia_orden": "Your order reference is:"
+  "referencia_orden": "Your order reference is:",
+  "order_error_title": "An error has occurred!",
+  "order_error_subtitle": "The requested order does not exist..."
 };
 
 export default en;

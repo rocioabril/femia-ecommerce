@@ -1,16 +1,16 @@
 import { useParams } from "react-router-dom";
-import ItemList from "./ItemList";
-import Loader from "./Loader";
-import { useProducts } from "../context/ProductsContext"
+import ItemList from "../components/ItemList";
+import Loader from "../components/Loader";
+import { useProducts } from "../contexts/ProductsContext";
 
 //renderiza la lista de productos por categorías
-function ItemListContainer() {
+function ItemListPage() {
   const { products, isLoading } = useProducts();
-  const { idCategory } = useParams();
+  const { categoryId } = useParams();
 
-  const filteredProducts = idCategory 
-  ? products.filter(product => product.category === idCategory) 
-  : products;
+  const filteredProducts = categoryId
+    ? products.filter((product) => product.category === categoryId)
+    : products;
 
   if (isLoading) return <Loader />;
 
@@ -21,4 +21,4 @@ function ItemListContainer() {
   );
 }
 
-export default ItemListContainer;
+export default ItemListPage;

@@ -1,18 +1,16 @@
 import { useParams } from "react-router-dom";
-import ItemDetail from "./ItemDetail";
-import Loader from "./Loader";
-import { useProducts } from "../context/ProductsContext"
-import { useLang } from "../context/LangContext"; 
-
-
+import ItemDetail from "../components/ItemDetail";
+import Loader from "../components/Loader";
+import { useProducts } from "../contexts/ProductsContext"
+import { useLang } from "../contexts/LangContext";
 
 //Filtar por ID qué producto mostrar y se lo pasa a ItemDetail por props
-function ItemDetailContainer() {
-  const { idProduct } = useParams();
+function ItemDetailPage() {
+  const { productId } = useParams();
   const { products, isLoading } = useProducts();
   const { language } = useLang();
 
-  const product = products.find(product => product.id === idProduct);
+  const product = products.find(product => product.id === productId);
 
   if (isLoading) return <Loader />;
 
@@ -21,4 +19,4 @@ function ItemDetailContainer() {
   return <ItemDetail product={product} />;
 }
 
-export default ItemDetailContainer;
+export default ItemDetailPage;

@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ItemCount from "./ItemCount";
-import { useLang } from "../context/LangContext";
-import { useCart } from "../context/CartContext";
+import { useLang } from "../contexts/LangContext";
+import { useCart } from "../contexts/CartContext";
 import PriceWithOffer from "./PriceWithOffer";
 
 function ItemDetail({ product }) {
   const { language } = useLang();
-  const { addProduct } = useCart();
+  const { getProductQuantityInCart, addProduct } = useCart();
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
+
+  const quantityInCart = getProductQuantityInCart(product.id);
 
   const onAdd = (quantityToAdd) => {
     setQuantity(quantityToAdd);
@@ -20,7 +22,7 @@ function ItemDetail({ product }) {
     <div className="flex flex-col gap-8 p-12 max-w-4xl md:flex-row">
       <img
         className="max-w-xs rounded h-fit"
-        src={`../../public/img/${product.name}.jpeg`}
+        src={`/img/${product.name}.jpeg`}
         alt={product.name}
       />
       <div className="flex flex-col gap-4">
@@ -45,7 +47,11 @@ function ItemDetail({ product }) {
           </p>
         </div>
         {quantity === 0 ? (
-          <ItemCount initial={1} stock={product.stock} onAdd={onAdd} />
+          <ItemCount
+            initial={1}
+            limitMax={product.stock - quantityInCart}
+            onAdd={onAdd}
+          />
         ) : (
           <>
             <div>

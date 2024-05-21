@@ -2,7 +2,7 @@ import logo from "../assets/logo.png";
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 import LanguageSelector from "./LanguageSelector";
-import LangContext from "../context/LangContext";
+import LangContext from "../contexts/LangContext";
 import { useContext } from "react";
 
 function Navbar() {
